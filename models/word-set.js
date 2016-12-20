@@ -1,16 +1,10 @@
 var mongoose = require('mongoose');
 
-
-var wordSchema = mongoose.Schema({
-    w: String,
-    t: String 
+var wordsetSchema = mongoose.Schema({
+    name: { type: String, unique: true, index: true },
+    words: [{ w: String, t: String }]
 });
 
-var wordsetSchema = mongoosee.Schema({
-    name: String,
-    word: wordSchema
-});
+var WordSet = mongoose.model('wordSet', wordsetSchema);
 
-var wordSet = mongoose.model('wordSet', wordsetSchema);
-
-module.exports = wordSet;
+module.exports = WordSet;
