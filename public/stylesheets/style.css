@@ -4,6 +4,20 @@ body {
   background-color: rgb(91.3%, 91.3%, 91.3%);
 }
 
+h3 {
+  font-size: 16px;
+}
+
+* {
+  -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
+}
+
 a {
   color: #00B7FF;
+}
+
+form {
+  margin: 10px 0;
 }
