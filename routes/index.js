@@ -20,11 +20,20 @@ router.post('/wordsets/add', function (req, res) {
    db.createWordset(req.body.name, function() {
        res.redirect('/wordsets');
    });
-   
+});
+
+router.post('/wordsets/delete', function (req, res) {
+   db.deleteWordset(req.body._id, function() {
+       res.redirect('/wordsets');
+   });
 });
 
 router.get('/wordset', function (req, res, next) {
     res.render('wordset', { title: 'Language Site' });
+});
+
+router.post('/wordset', function (req, res, next) {
+    res.redirect('/wordset');
 });
 
 router.get('/sentences', function (req, res, next) {

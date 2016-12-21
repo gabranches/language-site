@@ -21,3 +21,26 @@ a {
 form {
   margin: 10px 0;
 }
+
+.wordset-row {
+  margin: 10px 0;
+}
+
+.wordset-row .inner {
+  line-height: 40px;
+  font-size: 16px;
+  background-color: #F8F8F8;
+  margin: 2px;
+}
+
+.wordset-icon {
+  line-height: 40px;
+}
+
+.wordset-icon .btn {
+  margin-right: 10px;
+}
+
+.wordset-icon .glyphicon {
+  font-size: 14px;
+}

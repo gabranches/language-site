@@ -5,24 +5,30 @@ block content
     div.container-fluid
         div.row
             div.col-xs-12
-                h3 Add a new wordset
+                h3 Add a new Word Set
         div.row
             div.col-xs-12
                 form.form-inline(action="/wordsets/add" method="post")
                     div.form-group
-                        input#wordset-name.form-control(type="text" name="name" placeholder="Wordset name")
+                        input#wordset-name.form-control(type="text" name="name" placeholder="Word Set name")
                     button.btn.btn-primary(type="submit") Add
         div.row
             div.col-xs-12
-                h3 Current wordsets
+                h3 Current Word Sets
         div.row
             div#wordset-list.col-xs-12
                 if data.length > 0
                     - each wordset in data
-                        p 
-                            = wordset.name
-                        p 
-                            = wordset.words.length
+                        div.row.wordset-row(_id="#{wordset._id}")
+                            div.col-xs-4.inner
+                                = wordset.name
+                            div.col-xs-2.inner.word-count
+                                = wordset.words.length + " words"
+                            div.col-xs-2.wordset-icon
+                                button.btn.btn-primary.btn-sm.edit(type="button")
+                                    span.glyphicon.glyphicon-pencil
+                                button.btn.btn-primary.btn-sm.delete(type="button")
+                                    span.glyphicon.glyphicon-remove
                 else
-                    p You have no wordsets.
+                    p You have no Word Sets.
                     

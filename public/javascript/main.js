@@ -86,3 +86,19 @@ $(function () {
     console.log(sentence.genTranslation());
 
 });
+
+$(document).ready(function () {
+
+    $(".edit").click(function () {
+        var _id = $(this).parent().parent().attr("_id");
+        window.location = '/wordset/' + _id;
+    });
+
+    $(".delete").click(function () {
+        var _id = $(this).parent().parent().attr("_id");
+        $.post('/wordsets/delete', {_id: _id}, function() {
+            window.location = '/wordsets/';
+        });
+    });
+
+});
