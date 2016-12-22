@@ -30,7 +30,7 @@ form {
   line-height: 40px;
   font-size: 16px;
   background-color: #F8F8F8;
-  margin: 2px;
+  margin-right: 5px;
 }
 
 .wordset-icon {
@@ -38,9 +38,6 @@ form {
 }
 
 .wordset-icon .btn {
-  margin-right: 10px;
-}
-
-.wordset-icon .glyphicon {
-  font-size: 14px;
+  margin-right: 5px;
+  font-size: 15px;
 }

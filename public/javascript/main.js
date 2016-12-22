@@ -69,9 +69,7 @@ $(function () {
         }
     ];
 
-
     var sentence = new Sentence(pickRandom(sentences));
-
 
     String.prototype.format = function () {
         var formatted = this;

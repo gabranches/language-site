@@ -1,11 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var env = require('../env');
 var db = require('../lib/db')
 var WordSet = require('../models/word-set');
 
-/* GET home page. */
 router.get('/', function (req, res, next) {
     res.render('index', { title: 'Language Site' });
 });
@@ -39,7 +37,5 @@ router.post('/wordset', function (req, res, next) {
 router.get('/sentences', function (req, res, next) {
     res.render('sentences', { title: 'Language Site' });
 });
-
-
 
 module.exports = router;
