@@ -10,6 +10,8 @@ router.get('/', function (req, res, next) {
 
 router.get('/wordsets', function (req, res, next) {
     WordSet.find(function (err, doc) {
+        console.log(err);
+        console.log(doc);
         res.render('wordsets', { data: doc });
     });
 });
@@ -26,13 +28,12 @@ router.post('/wordsets/delete', function (req, res) {
    });
 });
 
-router.get('/wordset', function (req, res, next) {
-    res.render('wordset', { title: 'Language Site' });
+router.get('/wordset/:_id', function (req, res, next) {
+    WordSet.findById(req.params._id, function(err, doc) {
+        res.render('wordset', { data: doc });
+    });
 });
 
-router.post('/wordset', function (req, res, next) {
-    res.redirect('/wordset');
-});
 
 router.get('/sentences', function (req, res, next) {
     res.render('sentences', { title: 'Language Site' });

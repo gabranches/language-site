@@ -85,8 +85,8 @@ $(function () {
 
 });
 
-$(document).ready(function () {
 
+$(document).ready(function () {
     $(".edit").click(function () {
         var _id = $(this).parent().parent().attr("_id");
         window.location = '/wordset/' + _id;
@@ -94,9 +94,8 @@ $(document).ready(function () {
 
     $(".delete").click(function () {
         var _id = $(this).parent().parent().attr("_id");
-        $.post('/wordsets/delete', {_id: _id}, function() {
+        $.post('/wordsets/delete', { _id: _id }, function () {
             window.location = '/wordsets/';
         });
     });
-
 });
