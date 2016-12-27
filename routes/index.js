@@ -69,7 +69,7 @@ router.post('/wordset/delete-word', function (req, res, next) {
 // Sentences page
 
 router.get('/sentences', function (req, res, next) {
-    Sentence.find(function(err, doc) {
+    Sentence.find(function (err, doc) {
         res.render('sentences', { data: doc });
     });
 });
@@ -81,6 +81,14 @@ router.post('/sentences/add', function (req, res, next) {
         if (err) console.log(err);
         res.end(JSON.stringify({ status: 200 }));
     });
+});
+
+// Delete sentence
+
+router.post('/sentences/delete', function (req, res, next) {
+    Sentence.findById(req.body._id).remove(function () {
+        res.end(JSON.stringify({ status: 200 }));
+    })
 });
 
 module.exports = router;

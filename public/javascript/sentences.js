@@ -52,16 +52,14 @@ $(document).on('click', '.edit', function () {
 
 });
 
-// Delete word
+// Delete sentence
 
 $(document).on('click', '.delete', function () {
 
     var elem = $(this).parent().parent();
-    var word_id = elem.attr("_id");
+    var _id = elem.attr("_id");
 
-    console.log(word_id);
-
-    $.post('/wordset/delete-word', { _id: data._id, word_id: word_id }, function () {
+    $.post('/sentences/delete', { _id: _id }, function () {
         elem.remove();
     });
 });
