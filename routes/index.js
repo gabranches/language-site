@@ -16,11 +16,15 @@ router.get('/wordsets', function (req, res, next) {
     });
 });
 
+// Add wordset
+
 router.post('/wordsets/add', function (req, res) {
    db.createWordset(req.body.name, function() {
        res.redirect('/wordsets');
    });
 });
+
+// Delete wordset
 
 router.post('/wordsets/delete', function (req, res) {
    db.deleteWordset(req.body._id, function() {
@@ -28,9 +32,19 @@ router.post('/wordsets/delete', function (req, res) {
    });
 });
 
+// Wordset page
+
 router.get('/wordset/:_id', function (req, res, next) {
     WordSet.findById(req.params._id, function(err, doc) {
         res.render('wordset', { data: doc });
+    });
+});
+
+// Add new word/translation
+
+router.post('/wordset/add', function (req, res, next) {
+    db.newWord(req.body._id, req.body.w, req.body.t, function() {
+        res.end('{"success" : "Updated Successfully", "status" : 200}');
     });
 });
 

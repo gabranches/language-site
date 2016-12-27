@@ -87,6 +87,7 @@ $(function () {
 
 
 $(document).ready(function () {
+
     $(".edit").click(function () {
         var _id = $(this).parent().parent().attr("_id");
         window.location = '/wordset/' + _id;
@@ -98,4 +99,5 @@ $(document).ready(function () {
             window.location = '/wordsets/';
         });
     });
+    
 });

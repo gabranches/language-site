@@ -8,7 +8,7 @@ block content
                 h3 Add a new word
         div.row
             div.col-xs-12
-                form.form-inline(action="/wordsets/add" method="post")
+                form#word-form.form-inline
                     div.form-group
                         input#word.form-control(type="text" name="name" placeholder="Word")
                         input#translation.form-control(type="text" name="translation" placeholder="Translation")
