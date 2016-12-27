@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var db = require('../lib/db')
-var WordSet = require('../models/word-set');
+var WordSet = require('../models/wordset');
+var Sentence = require('../models/sentences');
 
 router.get('/', function (req, res, next) {
     res.render('index', { title: 'Language Site' });
@@ -61,18 +62,25 @@ router.post('/wordset/add', function (req, res, next) {
 
 router.post('/wordset/delete-word', function (req, res, next) {
     db.deleteWord(req.body._id, req.body.word_id, function (data) {
-        res.end(JSON.stringify(
-            {
-                status: 200
-            }
-        ));
+        res.end(JSON.stringify({ status: 200 }));
     });
 });
 
 // Sentences page
 
 router.get('/sentences', function (req, res, next) {
-    res.render('sentences', { title: 'Language Site' });
+    Sentence.find(function(err, doc) {
+        res.render('sentences', { data: doc });
+    });
+});
+
+// Add sentence
+
+router.post('/sentences/add', function (req, res, next) {
+    Sentence.create(req.body, function (err) {
+        if (err) console.log(err);
+        res.end(JSON.stringify({ status: 200 }));
+    });
 });
 
 module.exports = router;

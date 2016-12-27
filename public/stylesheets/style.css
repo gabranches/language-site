@@ -22,11 +22,11 @@ form {
   margin: 10px 0;
 }
 
-.wordset-row {
+.wordset-row, .sentence-row {
   margin: 10px 0;
 }
 
-.wordset-row .inner {
+.wordset-row .inner, .sentence-row .inner {
   line-height: 40px;
   font-size: 16px;
   background-color: #F8F8F8;
@@ -40,4 +40,8 @@ form {
 .wordset-icon .btn {
   margin-right: 5px;
   font-size: 15px;
+}
+
+.wordset-name {
+  cursor: pointer;
 }

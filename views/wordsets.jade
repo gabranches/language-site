@@ -20,7 +20,7 @@ block content
                 if data.length > 0
                     - each wordset in data
                         div.row.wordset-row(_id="#{wordset._id}")
-                            div.col-xs-4.inner
+                            div.col-xs-4.inner.wordset-name
                                 = wordset.name
                             div.col-xs-2.inner.word-count
                                 = wordset.words.length + " words"

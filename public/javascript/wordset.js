@@ -34,7 +34,7 @@ $("#word-form").on('submit', function () {
                 // Replace existing word
                 $('[_id=' + res._id + ']').find('.translation').text(t);
             }
-            $('#word').val('');
+            $('#word').val('').focus();
             $('#translation').val('');
         } else {
             alert('Failed to add new word');
@@ -43,10 +43,24 @@ $("#word-form").on('submit', function () {
     return false;
 });
 
+
+// Edit word
+
+$(document).on('click', '.edit', function () {
+
+    var elem = $(this).parent().parent();
+    var w = $(elem).find('.word').text();
+    var t = $(elem).find('.translation').text();
+
+    $('#word').val(w);
+    $('#translation').val(t).focus();
+
+});
+
 // Delete word
 
 $(document).on('click', '.delete', function () {
-    console.log('c');
+
     var elem = $(this).parent().parent();
     var word_id = elem.attr("_id");
 

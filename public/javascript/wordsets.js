@@ -1,6 +1,5 @@
 $(document).on('click', '.edit', function () {
-    var _id = $(this).parent().parent().attr("_id");
-    window.location = '/wordset/' + _id;
+    editWordset($(this).parent().parent().attr("_id"));
 });
 
 $(document).on('click', '.delete', function () {
@@ -12,4 +11,13 @@ $(document).on('click', '.delete', function () {
         });
     }
 });
+
+$(document).on('click', '.wordset-name', function () {
+    editWordset($(this).parent().attr("_id"));
+});
+
+
+function editWordset(_id) {
+    window.location = '/wordset/' + _id;
+}
 

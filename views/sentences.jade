@@ -1,0 +1,38 @@
+extends layout
+
+block content
+
+    div.container-fluid
+        div.row
+            div.col-xs-12
+                h3 Add a new sentence
+        div.row
+            div.col-xs-12
+                form#sentence-form.form
+                    div.form-group
+                        input#s_original.form-control(type="text" name="s_original" placeholder="Original Sentence")
+                        input#s_translation.form-control(type="text" name="s_translation" placeholder="Translated Sentence")
+                    button.btn.btn-primary(type="submit") Add
+        div.row
+            div.col-xs-12
+                h3 Current Sentences
+        div.row
+            div#sentence-list.col-xs-12
+
+        script(type='text/javascript').
+            var data = !{JSON.stringify(data)};
+
+        script(id="sentence-template" type="text/x-handlebars-template")
+            div.row.sentence-row(_id="{{_id}}")
+                div.col-xs-9.inner.s_original.
+                    {{s_original}}
+                div.col-xs-2.wordset-icon
+                    button.btn.btn-primary.btn-sm.edit(type="button")
+                        span.glyphicon.glyphicon-pencil
+                    button.btn.btn-primary.btn-sm.delete(type="button")
+                        span.glyphicon.glyphicon-remove
+                div.col-xs-9.inner.s_translation.
+                    {{s_translation}}
+
+                    
+    script(type="text/javascript" src="/javascript/sentences.js")
