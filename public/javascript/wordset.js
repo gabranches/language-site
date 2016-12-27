@@ -1,26 +1,58 @@
-$(document).ready(function () {
 
-    console.log(data);
+console.log(data);
 
-    var source = $("#word-template").html();
-    var template = Handlebars.compile(source);
+var source = $("#word-template").html();
+var template = Handlebars.compile(source);
 
-    // Append words
+// Append words
 
-    data.words.forEach(function(word) {
-        $("#wordset-list").append(template(word));
-    })
+data.words.forEach(function (word) {
+    $("#wordset-list").prepend(template(word));
+})
 
-    // Form submit
+// Add new word
 
-    $("#word-form").on('submit', function () {
-        var w = $("#word").val();
-        var t = $("#translation").val();
-        console.log('submitted');
-        $.post('/wordset/add', { _id: data._id, w: w, t: t }, function(data) {
-            $("#wordset-list").append(template( {w: w, t: t });
-        });
-        return false;
-    })
+$("#word-form").on('submit', function () {
+    var w = $("#word").val();
+    var t = $("#translation").val();
 
+    $.post('/wordset/add', {
+        _id: data._id,
+        w: w,
+        t: t
+    }, function (res) {
+        res = JSON.parse(res);
+        if (res.status === 200) {
+            if (res.replace === false) {
+                // Add new word
+                $("#wordset-list").prepend(template({
+                    w: w,
+                    t: t,
+                    _id: res._id
+                }));
+            } else {
+                // Replace existing word
+                $('[_id=' + res._id + ']').find('.translation').text(t);
+            }
+            $('#word').val('');
+            $('#translation').val('');
+        } else {
+            alert('Failed to add new word');
+        }
+    });
+    return false;
+});
+
+// Delete word
+
+$(document).on('click', '.delete', function () {
+    console.log('c');
+    var elem = $(this).parent().parent();
+    var word_id = elem.attr("_id");
+
+    console.log(word_id);
+
+    $.post('/wordset/delete-word', { _id: data._id, word_id: word_id }, function () {
+        elem.remove();
+    });
 });

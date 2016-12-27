@@ -23,15 +23,15 @@ block content
             var data = !{JSON.stringify(data)};
 
         script(id="word-template" type="text/x-handlebars-template")
-            div.row.wordset-row(_id="{{word._id}}")
-                div.col-xs-4.inner
+            div.row.wordset-row(_id="{{_id}}")
+                div.col-xs-4.inner.
                     {{w}}
-                div.col-xs-4.inner.word-count
+                div.col-xs-4.inner.translation.
                     {{t}}
                 div.col-xs-2.wordset-icon
-                    button.btn.btn-primary.btn-sm.edit(type="button")
-                        span.glyphicon.glyphicon-pencil
+                    //- button.btn.btn-primary.btn-sm.edit(type="button")
+                    //-     span.glyphicon.glyphicon-pencil
                     button.btn.btn-primary.btn-sm.delete(type="button")
                         span.glyphicon.glyphicon-remove
                     
-        script(type="text/javascript" src="/javascript/wordset.js")
+    script(type="text/javascript" src="/javascript/wordset.js")

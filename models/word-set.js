@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 var wordsetSchema = mongoose.Schema({
     name: { type: String, unique: true, index: true },
-    words: [mongoose.Schema({w: {type: String, unique: true}, t: String})]
+    words: [mongoose.Schema({w: String, t: String})]
 });
 
 var WordSet = mongoose.model('wordSet', wordsetSchema);
