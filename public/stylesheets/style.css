@@ -45,3 +45,7 @@ form {
 .wordset-name {
   cursor: pointer;
 }
+
+#sentence-form .form-group, #practice-input {
+  width: 80%;
+}

@@ -91,4 +91,20 @@ router.post('/sentences/delete', function (req, res, next) {
     })
 });
 
+
+// Practice
+
+router.get('/practice', function (req, res, next) {
+    Sentence.find(function (err, sentences) {
+        WordSet.find(function (err, wordsets) {
+            res.render('practice', {
+                data: {
+                    sentences: sentences,
+                    wordsets: wordsets
+                }
+            });
+        });
+    });
+})
+
 module.exports = router;

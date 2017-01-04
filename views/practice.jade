@@ -1,0 +1,18 @@
+extends layout
+
+block content
+
+    div.container-fluid
+        div.row
+            div#current-sentence.col-xs-9
+        div.row
+            div.col-xs-9
+                form#sentence-form.form-inline
+                    div.form-group
+                        input#practice-input.form-control(type="text" name="practice-input" placeholder="Answer here")
+                    button.btn.btn-primary(type="submit") Submit
+
+        script(type='text/javascript').
+            var data = !{JSON.stringify(data)};
+
+    script(type="text/javascript" src="/javascript/practice.js")
