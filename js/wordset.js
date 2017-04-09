@@ -1,20 +1,18 @@
 
 console.log(data);
 
-var source = $("#word-template").html();
+var source = $('#word-template').html();
 var template = Handlebars.compile(source);
 
 // Append words
-
 data.words.forEach(function (word) {
-    $("#wordset-list").prepend(template(word));
-})
+    $('#wordset-list').prepend(template(word));
+});
 
 // Add new word
-
-$("#word-form").on('submit', function () {
-    var w = $("#word").val();
-    var t = $("#translation").val();
+$('#word-form').on('submit', function () {
+    var w = $('#word').val();
+    var t = $('#translation').val();
 
     $.post('/wordset/add', {
         _id: data._id,
@@ -25,7 +23,7 @@ $("#word-form").on('submit', function () {
         if (res.status === 200) {
             if (res.replace === false) {
                 // Add new word
-                $("#wordset-list").prepend(template({
+                $('#wordset-list').prepend(template({
                     w: w,
                     t: t,
                     _id: res._id
@@ -45,28 +43,23 @@ $("#word-form").on('submit', function () {
 
 
 // Edit word
-
 $(document).on('click', '.edit', function () {
-
     var elem = $(this).parent().parent();
     var w = $(elem).find('.word').text();
     var t = $(elem).find('.translation').text();
 
     $('#word').val(w);
     $('#translation').val(t).focus();
-
 });
 
 // Delete word
-
 $(document).on('click', '.delete', function () {
-
     var elem = $(this).parent().parent();
-    var word_id = elem.attr("_id");
+    var wordId = elem.attr('_id');
 
-    console.log(word_id);
+    console.log(wordId);
 
-    $.post('/wordset/delete-word', { _id: data._id, word_id: word_id }, function () {
+    $.post('/wordset/delete-word', { _id: data._id, wordId: wordId }, function () {
         elem.remove();
     });
 });

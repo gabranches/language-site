@@ -1,19 +1,7 @@
-console.log(data);
-
-var source = $("#sentence-template").html();
-var template = Handlebars.compile(source);
-
-// Append sentences
-
-data.forEach(function (sentence) {
-    $("#sentence-list").prepend(template(sentence));
-})
-
 // Add new word
-
-$("#sentence-form").on('submit', function () {
-    var o = $("#s_original").val();
-    var t = $("#s_translation").val();
+$('#sentence-form').on('submit', function () {
+    var o = $('#s_original').val();
+    var t = $('#s_translation').val();
 
     $.post('/sentences/add', {
         s_original: o,
@@ -21,8 +9,7 @@ $("#sentence-form").on('submit', function () {
     }, function (res) {
         res = JSON.parse(res);
         if (res.status === 200) {
-
-            $("#sentence-list").prepend(template({
+            $('#sentence-list').prepend(template({
                 s_original: o,
                 s_translation: t,
                 _id: res._id
@@ -38,26 +25,20 @@ $("#sentence-form").on('submit', function () {
     return false;
 });
 
-
 // Edit word
-
 $(document).on('click', '.edit', function () {
-
     var elem = $(this).parent().parent();
     var w = $(elem).find('.word').text();
     var t = $(elem).find('.translation').text();
 
     $('#word').val(w);
     $('#translation').val(t).focus();
-
 });
 
 // Delete sentence
-
 $(document).on('click', '.delete', function () {
-
     var elem = $(this).parent().parent();
-    var _id = elem.attr("_id");
+    var _id = elem.attr('_id');
 
     $.post('/sentences/delete', { _id: _id }, function () {
         elem.remove();

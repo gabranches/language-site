@@ -16,7 +16,6 @@ router.get('/wordsets', function (req, res, next) {
 });
 
 // Add wordset
-
 router.post('/wordsets/add', function (req, res) {
     db.createWordset(req.body.name, function (success) {
         if (success) {
@@ -28,7 +27,6 @@ router.post('/wordsets/add', function (req, res) {
 });
 
 // Delete wordset
-
 router.post('/wordsets/delete', function (req, res) {
     db.deleteWordset(req.body._id, function () {
         res.redirect('/wordsets');
@@ -36,7 +34,6 @@ router.post('/wordsets/delete', function (req, res) {
 });
 
 // Wordset page
-
 router.get('/wordset/:_id', function (req, res, next) {
     WordSet.findById(req.params._id, function (err, doc) {
         res.render('wordset', { data: doc });
@@ -44,7 +41,6 @@ router.get('/wordset/:_id', function (req, res, next) {
 });
 
 // Add new word/translation
-
 router.post('/wordset/add', function (req, res, next) {
     db.newWord(req.body._id, req.body.w, req.body.t, function (data) {
         console.log(data);
@@ -59,7 +55,6 @@ router.post('/wordset/add', function (req, res, next) {
 });
 
 // Delete word
-
 router.post('/wordset/delete-word', function (req, res, next) {
     db.deleteWord(req.body._id, req.body.word_id, function (data) {
         res.end(JSON.stringify({ status: 200 }));
@@ -67,7 +62,6 @@ router.post('/wordset/delete-word', function (req, res, next) {
 });
 
 // Sentences page
-
 router.get('/sentences', function (req, res, next) {
     Sentence.find(function (err, doc) {
         res.render('sentences', { data: doc });
@@ -75,7 +69,6 @@ router.get('/sentences', function (req, res, next) {
 });
 
 // Add sentence
-
 router.post('/sentences/add', function (req, res, next) {
     Sentence.create(req.body, function (err) {
         if (err) console.log(err);
@@ -84,7 +77,6 @@ router.post('/sentences/add', function (req, res, next) {
 });
 
 // Delete sentence
-
 router.post('/sentences/delete', function (req, res, next) {
     Sentence.findById(req.body._id).remove(function () {
         res.end(JSON.stringify({ status: 200 }));
@@ -93,7 +85,6 @@ router.post('/sentences/delete', function (req, res, next) {
 
 
 // Practice
-
 router.get('/practice', function (req, res, next) {
     Sentence.find(function (err, sentences) {
         WordSet.find(function (err, wordsets) {
