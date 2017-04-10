@@ -23,9 +23,9 @@ router.get('/wordsets', function (req, res, next) {
 router.post('/wordsets/add', function (req, res) {
     db.createWordset(req.body.name, function (success) {
         if (success) {
-            res.redirect('/wordsets');
+            res.send(200);
         } else {
-            res.end('{"error": "duplicate wordset"}')
+            res.send(500);
         }
     });
 });

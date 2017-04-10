@@ -7,11 +7,11 @@ block content
             div.col-xs-12
                 h3 Add a new Word Set
         div.row
-            div.col-xs-12
-                form.form-inline(action="/wordsets/add" method="post")
+            div.col-xs-6
+                form.form-inline
                     div.form-group
-                        input#wordset-name.form-control(type="text" name="name" placeholder="Word Set name")
-                    button.btn.btn-primary(type="submit") Add
+                        input#wordset-name.form-control(v-model="newWordsetName" type="text" placeholder="Word Set name")
+                    button.btn.btn-primary(type="button" v-on:click="addWordset(newWordsetName)") Add
         div.row
             div.col-xs-12
                 h3 Current Word Sets
