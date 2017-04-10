@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-    div.container-fluid
+    div#wordsets.container-fluid
         div.row
             div.col-xs-12
                 h3 Add a new Word Set
@@ -15,21 +15,17 @@ block content
         div.row
             div.col-xs-12
                 h3 Current Word Sets
-        div.row
+        div.row(v-for="wordset in wordsets")
             div#wordset-list.col-xs-12
-                if data.length > 0
-                    - each wordset in data
-                        div.row.wordset-row(_id="#{wordset._id}")
-                            div.col-xs-4.inner.wordset-name
-                                = wordset.name
-                            div.col-xs-2.inner.word-count
-                                = wordset.words.length + " words"
-                            div.col-xs-2.wordset-icon
-                                button.btn.btn-primary.btn-sm.edit(type="button")
-                                    span.glyphicon.glyphicon-pencil
-                                button.btn.btn-primary.btn-sm.delete(type="button")
-                                    span.glyphicon.glyphicon-remove
-                else
-                    p You have no Word Sets.
+                div.row.wordset-row(:id="wordset._id")
+                    div.col-xs-4.inner.wordset-name(v-on:click="editWordset(wordset._id)")
+                        span {{ wordset.name }}
+                    div.col-xs-2.inner.word-count
+                        span {{ wordset.words.length}} words
+                    div.col-xs-2.wordset-icon
+                        button.btn.btn-primary.btn-sm.edit(type="button" v-on:click="editWordset(wordset._id)")
+                            span.glyphicon.glyphicon-pencil
+                        button.btn.btn-primary.btn-sm.delete.wordset-delete(type="button" v-on:click="deleteWordset(wordset._id)")
+                            span.glyphicon.glyphicon-remove
     script(type='text/javascript').
-            var data = !{JSON.stringify(data)};
+            const jsonData = !{JSON.stringify(data)};

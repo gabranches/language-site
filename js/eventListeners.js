@@ -35,12 +35,3 @@ $(document).on('click', '.edit', function () {
     $('#translation').val(t).focus();
 });
 
-// Delete sentence
-$(document).on('click', '.delete', function () {
-    var elem = $(this).parent().parent();
-    var _id = elem.attr('_id');
-
-    $.post('/sentences/delete', { _id: _id }, function () {
-        elem.remove();
-    });
-});

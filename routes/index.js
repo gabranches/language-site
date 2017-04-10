@@ -9,6 +9,10 @@ router.get('/', function (req, res, next) {
     res.render('index', { title: 'Language Site' });
 });
 
+router.get('/favicon.ico', () => {
+    res.send(200);
+});
+
 router.get('/wordsets', function (req, res, next) {
     WordSet.find(function (err, doc) {
         res.render('wordsets', { data: doc });

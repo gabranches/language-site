@@ -1,21 +1,21 @@
-function editWordset(_id) {
-    window.location = '/wordset/' + _id;
-}
 
-$(document).on('click', '.edit', function () {
-    editWordset($(this).parent().parent().attr('_id'));
-});
-
-$(document).on('click', '.delete', function () {
-    var _id = $(this).parent().parent().attr('_id');
-
-    if (confirm('Are you sure you want to delete this wordset? This cannot be undone.')) {
-        $.post('/wordsets/delete', { _id: _id }, function () {
-            window.location = '/wordsets/';
-        });
+const wordsets = new Vue({
+    el: '#wordsets',
+    data: {
+        wordsets: jsonData
+    },
+    methods: {
+        editWordset(id) {
+            window.location = '/wordset/' + id;
+        },
+        deleteWordset(id) {
+            console.log(this.wordsets);
+            if (confirm('Are you sure you want to delete this wordset? This cannot be undone.')) {
+                $.post('/wordsets/delete', { _id: id }, () => {
+                    this.wordsets = this.wordsets.filter(wordset => wordset._id != id);
+                    console.log(this.wordsets);
+                });
+            }
+        }
     }
-});
-
-$(document).on('click', '.wordset-name', function () {
-    editWordset($(this).parent().attr('_id'));
 });
