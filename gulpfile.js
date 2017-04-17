@@ -14,7 +14,9 @@ const jshint = require('gulp-jshint'),
     nodemon = require('gulp-nodemon'),
     jade = require('gulp-jade'),
     sourcemaps = require('gulp-sourcemaps'),
-    babel = require('gulp-babel');
+    babel = require('gulp-babel'),
+    ts = require('gulp-typescript'),
+    tsProject = ts.createProject("tsconfig.json");
 
 // Nodemon options
 const nodemonOptions = {
@@ -49,13 +51,14 @@ gulp.task('sass', () => {
 gulp.task('js', () => {
     return gulp.src(
         [
-            'js/*.js'
+            'js/*.ts'
         ]
     )
         .pipe(sourcemaps.init())
-        .pipe(babel({
-            presets: ['es2015']
-        }))
+        .pipe(tsProject())
+        // .pipe(babel({
+        //     presets: ['es2015']
+        // }))
         .pipe(concat('js/all.js'))
         .pipe(rename('all.js'))
         .pipe(uglify())
@@ -77,7 +80,7 @@ gulp.task('start', () => {
 gulp.task('watch', () => {
     livereload.listen();
     gulp.watch(
-        ['js/**/*.js', 'views/*.jade', 'routes/*.js', 'public/stylesheets/*.css'],
+        ['js/**/*.ts', 'views/*.jade', 'routes/*.js', 'public/stylesheets/*.css'],
         ['lint', 'js']
     );
     // gulp.watch('scss/*.scss', ['sass']);

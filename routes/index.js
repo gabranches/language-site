@@ -44,6 +44,11 @@ router.get('/wordset/:_id', function (req, res, next) {
     });
 });
 
+// Typescript test
+router.get('/typescript', function (req,res,next) {
+    res.render('typescript');
+});
+
 // Add new word/translation
 router.post('/wordset/add', function (req, res, next) {
     db.newWord(req.body._id, req.body.w, req.body.t, function (data) {

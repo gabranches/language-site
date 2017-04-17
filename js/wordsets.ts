@@ -1,3 +1,5 @@
+declare var Vue: any;
+declare var jsonData: Array<Object>;
 
 const wordsets = new Vue({
     el: '#wordsets',
@@ -6,18 +8,18 @@ const wordsets = new Vue({
         wordsets: jsonData
     },
     methods: {
-        editWordset(id) {
-            window.location = '/wordset/' + id;
+        editWordset(id: string) {
+            window.location.href = '/wordset/' + id;
         },
-        deleteWordset(id) {
+        deleteWordset(id: string) {
             console.log(this.wordsets);
             if (confirm('Are you sure you want to delete this wordset? This cannot be undone!')) {
                 $.post('/wordsets/delete', { _id: id }, () => {
-                    this.wordsets = this.wordsets.filter(wordset => wordset._id !== id);
+                    this.wordsets = this.wordsets.filter((wordset: any) => wordset._id !== id);
                 });
             }
         },
-        addWordset(name) {
+        addWordset(name: string) {
             $.post('/wordsets/add',
                 { name: name },
                 (res) => {
