@@ -1,62 +1,60 @@
 
-function sentences() {
+// function sentences() {
 
-    // Append sentences
-    data.forEach(function (sentence) {
-        $('#sentence-list').prepend(template(sentence));
-    });
+//     // Append sentences
+//     data.forEach(function (sentence) {
+//         $('#sentence-list').prepend(template(sentence));
+//     });
 
-    const sentences = new Vue({
-        el: '#sentences',
-        data: data
-    });
-}
+//     const sentences = new Vue({
+//         el: '#sentences',
+//         data: data
+//     });
+// }
 
+// // Delete sentence
+// $(document).on('click', '.sentence-delete', function () {
+//     var elem = $(this).parent().parent();
+//     var _id = elem.attr('_id');
 
+//     $.post('/sentences/delete', { _id: _id }, function () {
+//         elem.remove();
+//     });
+// });
 
-// Delete sentence
-$(document).on('click', '.sentence-delete', function () {
-    var elem = $(this).parent().parent();
-    var _id = elem.attr('_id');
+// // Add new word
+// $('#sentence-form').on('submit', function () {
+//     var o = $('#s_original').val();
+//     var t = $('#s_translation').val();
 
-    $.post('/sentences/delete', { _id: _id }, function () {
-        elem.remove();
-    });
-});
+//     $.post('/sentences/add', {
+//         s_original: o,
+//         s_translation: t
+//     }, function (res) {
+//         res = JSON.parse(res);
+//         if (res.status === 200) {
+//             $('#sentence-list').prepend(template({
+//                 s_original: o,
+//                 s_translation: t,
+//                 _id: res._id
+//             }));
 
-// Add new word
-$('#sentence-form').on('submit', function () {
-    var o = $('#s_original').val();
-    var t = $('#s_translation').val();
+//             $('#s_original').val('').focus();
+//             $('#s_translation').val('');
+//         } else {
+//             alert('Failed to add new sentence');
+//         }
+//     });
 
-    $.post('/sentences/add', {
-        s_original: o,
-        s_translation: t
-    }, function (res) {
-        res = JSON.parse(res);
-        if (res.status === 200) {
-            $('#sentence-list').prepend(template({
-                s_original: o,
-                s_translation: t,
-                _id: res._id
-            }));
+//     return false;
+// });
 
-            $('#s_original').val('').focus();
-            $('#s_translation').val('');
-        } else {
-            alert('Failed to add new sentence');
-        }
-    });
+// // Edit word
+// $(document).on('click', '.sentence-edit', function () {
+//     var elem = $(this).parent().parent();
+//     var w = $(elem).find('.word').text();
+//     var t = $(elem).find('.translation').text();
 
-    return false;
-});
-
-// Edit word
-$(document).on('click', '.sentence-edit', function () {
-    var elem = $(this).parent().parent();
-    var w = $(elem).find('.word').text();
-    var t = $(elem).find('.translation').text();
-
-    $('#word').val(w);
-    $('#translation').val(t).focus();
-});
+//     $('#word').val(w);
+//     $('#translation').val(t).focus();
+// });

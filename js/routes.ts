@@ -1,12 +1,8 @@
-// const routes = {
-//     '/wordsets': wordsets 
-// }
+const routes : any = {
+    'wordsets': wordsetsPage,
+    'wordset': wordsetPage
+};
 
-// let currentRoute = window.location.pathname;
+let currentRoute = window.location.pathname.split('/')[1];
 
-// // console.log(data);
-
-// routes[currentRoute]();
-
-
-
+let currVue : any = routes[currentRoute]();

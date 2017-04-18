@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-    div.container-fluid
+    div#wordset.container-fluid
         div.row
             div.col-xs-12
                 h3 Add a new word
@@ -10,26 +10,25 @@ block content
             div.col-xs-12
                 form#word-form.form-inline
                     div.form-group
-                        input#word.form-control(type="text" name="name" placeholder="Word")
-                        input#translation.form-control(type="text" name="translation" placeholder="Translation")
-                    button.btn.btn-primary(type="submit") Add
+                        input#word.form-control(v-model="word" type="text" name="name" placeholder="Word")
+                        input#translation.form-control(v-model="translation" type="text" name="translation" placeholder="Translation")
+                    button.btn.btn-primary(type="button" v-on:click="addWord()") Add
         div.row
             div.col-xs-12
                 h3 Current Words
         div.row
             div#wordset-list.col-xs-12
 
-        script(type='text/javascript').
-            var data = !{JSON.stringify(data)};
+        div.row.wordset-row(v-for="word in wordset.words")
+            div.col-xs-4.inner.word.
+                {{ word.w }}
+            div.col-xs-4.inner.translation.
+                {{ word.t }}
+            div.col-xs-2.wordset-icon
+                button.btn.btn-primary.btn-sm.edit(type="button" v-on:click="editWord(word.w, word.t)")
+                    span.glyphicon.glyphicon-pencil
+                button.btn.btn-primary.btn-sm.delete(type="button" v-on:click="deleteWord(word._id)")
+                    span.glyphicon.glyphicon-remove
 
-        script(id="word-template" type="text/x-handlebars-template")
-            div.row.wordset-row(_id="{{_id}}")
-                div.col-xs-4.inner.word.
-                    {{w}}
-                div.col-xs-4.inner.translation.
-                    {{t}}
-                div.col-xs-2.wordset-icon
-                    button.btn.btn-primary.btn-sm.edit(type="button")
-                        span.glyphicon.glyphicon-pencil
-                    button.btn.btn-primary.btn-sm.delete(type="button")
-                        span.glyphicon.glyphicon-remove
+    script(type='text/javascript').
+        var jsonData = !{JSON.stringify(data)};

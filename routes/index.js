@@ -51,6 +51,7 @@ router.get('/typescript', function (req,res,next) {
 
 // Add new word/translation
 router.post('/wordset/add', function (req, res, next) {
+    console.log(req.body);
     db.newWord(req.body._id, req.body.w, req.body.t, function (data) {
         console.log(data);
         res.end(JSON.stringify(
@@ -65,7 +66,8 @@ router.post('/wordset/add', function (req, res, next) {
 
 // Delete word
 router.post('/wordset/delete-word', function (req, res, next) {
-    db.deleteWord(req.body._id, req.body.word_id, function (data) {
+    console.log(req.body);
+    db.deleteWord(req.body._id, req.body.wordId, function (data) {
         res.end(JSON.stringify({ status: 200 }));
     });
 });
