@@ -13,7 +13,6 @@ function wordsetsPage() {
                 window.location.href = '/wordset/' + id;
             },
             deleteWordset(id: string) {
-                console.log(this.wordsets);
                 if (confirm('Are you sure you want to delete this wordset? This cannot be undone!')) {
                     $.post('/wordsets/delete', { _id: id }, () => {
                         this.wordsets = this.wordsets.filter((wordset: any) => wordset._id !== id);

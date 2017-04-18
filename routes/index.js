@@ -51,9 +51,7 @@ router.get('/typescript', function (req,res,next) {
 
 // Add new word/translation
 router.post('/wordset/add', function (req, res, next) {
-    console.log(req.body);
     db.newWord(req.body._id, req.body.w, req.body.t, function (data) {
-        console.log(data);
         res.end(JSON.stringify(
             {
                 status: 200,
